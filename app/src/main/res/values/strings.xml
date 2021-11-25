@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">NovemberNotes</string>
+    <string name="michael">Michael</string>
+    <string name="michael_desc">Michael description here</string>
+    <string name="gericium">Gericium</string>
+    <string name="gericium_desc">Gericium description here</string>
+    <string name="olgamichael">Olga and Michael</string>
+    <string name="olgamichael_desc">Olga and Michael Description here</string>
+    <string name="mazda">Mazda 6</string>
+    <string name="mazda_desc">Mazda 6 description here</string>
+    <string name="yalos">Yalos</string>
+    <string name="yalos_desc">Yalos description here</string>
 </resources>
