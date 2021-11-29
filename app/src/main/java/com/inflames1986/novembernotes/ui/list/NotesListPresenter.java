@@ -1,4 +1,4 @@
-package com.inflames1986.novembernotes.ui;
+package com.inflames1986.novembernotes.ui.list;
 
 import com.inflames1986.novembernotes.domain.Note;
 import com.inflames1986.novembernotes.domain.NotesRepository;

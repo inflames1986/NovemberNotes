@@ -1,4 +1,4 @@
-package com.inflames1986.novembernotes.ui;
+package com.inflames1986.novembernotes.ui.list;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -75,9 +76,16 @@ public class NotesListFragment extends Fragment implements NotesListView { // б
 
             View noteItem = LayoutInflater.from(requireContext()).inflate(R.layout.item_note, container, false); //создалли view для заметки
 
-            ImageView noteImage = noteItem.findViewById(R.id.note_image);
+            noteItem.setOnClickListener(new View.OnClickListener() { //навешиваем онКликЛисенер на элемент списка
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getContext(), note.getNoteDescription(), Toast.LENGTH_SHORT).show();
+                }
+            });
 
-            noteImage.setImageResource(note.getNoteImage());
+            ImageView noteImage = noteItem.findViewById(R.id.note_image); //устанавливаем перемменную noteImage
+
+            noteImage.setImageResource(note.getNoteImage()); //сеттим значение в noteImage
 
             container.addView(noteItem);// сразу же добавили вью в контейнер
         }

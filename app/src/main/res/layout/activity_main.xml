@@ -8,7 +8,7 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.inflames1986.novembernotes.ui.NotesListFragment"
+        android:name="com.inflames1986.novembernotes.ui.list.NotesListFragment"
         tools:context=".ui.MainActivity" />
 </androidx.core.widget.NestedScrollView>
 

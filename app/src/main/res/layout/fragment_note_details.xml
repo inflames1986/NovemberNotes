@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/note_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="@string/gericium"
+        android:padding="@dimen/default_padding"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:gravity="center" />
+
+    <ImageView
+        android:id="@+id/note_image"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/image_view_size"
+        tools:src="@drawable/gericium"
+        android:padding="@dimen/default_padding"
+        android:contentDescription="@string/gericium_rus" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/default_padding"
+        tools:text="@string/gericium_desc"
+        android:textAppearance="@style/TextAppearance.AppCompat" />
+
+
+</LinearLayout>
