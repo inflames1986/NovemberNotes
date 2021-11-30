@@ -1,5 +1,6 @@
 package com.inflames1986.novembernotes.ui.list;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import com.inflames1986.novembernotes.R;
 import com.inflames1986.novembernotes.domain.DeviceNotesRepository;
 import com.inflames1986.novembernotes.domain.Note;
+import com.inflames1986.novembernotes.ui.details.NoteDetailsActivity;
 
 import java.util.List;
 
@@ -79,7 +81,13 @@ public class NotesListFragment extends Fragment implements NotesListView { // б
             noteItem.setOnClickListener(new View.OnClickListener() { //навешиваем онКликЛисенер на элемент списка
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getContext(), note.getNoteDescription(), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getContext(), note.getNoteDescription(), Toast.LENGTH_SHORT).show(); показываем сообщение при клике на заметку
+
+                    Intent intent = new Intent(requireContext(), NoteDetailsActivity.class); //во фрагменте в качестве контекста требуем контекст методом requireContext(),
+
+                                                                                             //будем по клику запускать NoteDetailsActivity.class
+                    intent.putExtra(NoteDetailsActivity.ARG_NOTE, note); //кладем в интент данные по ключу - заметку передаем
+                    startActivity(intent); //стартуем активити по интенту
                 }
             });
 
