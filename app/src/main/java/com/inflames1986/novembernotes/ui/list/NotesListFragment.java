@@ -1,5 +1,6 @@
 package com.inflames1986.novembernotes.ui.list;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -22,9 +23,31 @@ import java.util.List;
 
 public class NotesListFragment extends Fragment implements NotesListView { // будет выступать как view
 
+    public interface OnNoteClicked {     // определяем интерфейс наподобии noteItem.setOnClickListener(new View.OnClickListener()
+        void onNoteClicked(Note note);   // который будет оповещать активити с той стороны, что событие случилось, в качестве аргумента заметка
+    }
+
     private NotesListPresenter presenter; //создаем здесь презентер
 
     private LinearLayout container; //вытсакиваем в переменную контейнер
+
+    private OnNoteClicked onNoteClicked; //сохраняем ссылку на интерфейс OnNoteClicked
+
+
+    @Override
+    public void onAttach(@NonNull Context context) { // фрагмент присоединяется к активити
+        super.onAttach(context);
+
+        if (context instanceof OnNoteClicked) { //проверяем реализует ли активити OnNoteClicked или нет
+            onNoteClicked = (OnNoteClicked)context; //если да, то сохраняем на нее ссылку
+        }
+    }
+
+    @Override
+    public void onDetach() { //когда от активити отцепились,
+        onNoteClicked = null; //про нее забываем
+        super.onDetach();
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {//создаем меттод онКриэйт
@@ -81,13 +104,21 @@ public class NotesListFragment extends Fragment implements NotesListView { // б
             noteItem.setOnClickListener(new View.OnClickListener() { //навешиваем онКликЛисенер на элемент списка
                 @Override
                 public void onClick(View v) {
+                    if (onNoteClicked != null) {
+                        onNoteClicked.onNoteClicked(note);
+                    }
+
+
+                    /* А то, что ниже убираем в MainActivity*/
+
+
 //                    Toast.makeText(getContext(), note.getNoteDescription(), Toast.LENGTH_SHORT).show(); показываем сообщение при клике на заметку
-
-                    Intent intent = new Intent(requireContext(), NoteDetailsActivity.class); //во фрагменте в качестве контекста требуем контекст методом requireContext(),
-
-                                                                                             //будем по клику запускать NoteDetailsActivity.class
-                    intent.putExtra(NoteDetailsActivity.ARG_NOTE, note); //кладем в интент данные по ключу - заметку передаем
-                    startActivity(intent); //стартуем активити по интенту
+//
+//                    Intent intent = new Intent(requireContext(), NoteDetailsActivity.class); //во фрагменте в качестве контекста требуем контекст методом requireContext(),
+//
+//                                                                                             //будем по клику запускать NoteDetailsActivity.class
+//                    intent.putExtra(NoteDetailsActivity.ARG_NOTE, note); //кладем в интент данные по ключу - заметку передаем
+//                    startActivity(intent); //стартуем активити по интенту
                 }
             });
 
